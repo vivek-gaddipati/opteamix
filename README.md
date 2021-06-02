@@ -27,8 +27,62 @@ Softwares Required:
 4) MySQL database [Docker]
 
 ==============================================
+	
+NodeJS by default uses commonJS module system
 
+
+lib.js
+
+module.exports.add = function(x,y) {
+
+}	
+
+module.exports.sub = function(x,y) {
+
+}	
+
+
+multiply = function(x,y) {
+}
 
 
  
+other.js
+
+const lib = require('./lib');
+
+lib.add(4,5);
+=========================
+
+15 min Tea Break
+=================
+
+Node Js project
+---------------
+fs, http, https, crypto, path ==> built-in module
+
+NPM ==> Node Package Manager
+	==> to manage dependencies ==> like [Maven ==> pom.xml]
+	==> package.json
+			configure dependencies which will be downloaded by NPM
+	==> can use to publish the package
+
+https://www.npmjs.com/
+
+====================
+1) 
+simpleproject> npm init -y
+
+creates package.json
+
+ ab -c 1000 -n 10000 http://localhost:3000/hextorgb?hex=ff00ff
+
+
+=========================================================================
+
+TypeScript
+
+
+
+
 
