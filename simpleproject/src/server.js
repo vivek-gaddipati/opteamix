@@ -1,8 +1,10 @@
 var http = require('http');
+var url = require('url');
+
 var rgbToHex = require('./converter').rgbToHex;
 var hexToRgb = require('./converter').hexToRgb;
 
-var url = require('url');
+
 
 // http://localhost:3000/rgbtohex?r=255&g=100&b=120
 // http://localhost:3000/hextorgb?hex=ff00ff
