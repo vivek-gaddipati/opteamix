@@ -292,14 +292,45 @@ https://createapp.dev/
 
 ===============
 
+export class Person {
+    constructor(private name:string, private age: number) {
+        
+    }
+}
+
+same as
+
+export class Person {
+	name:string;
+	 age: number;
+    constructor( name:string, age: number) {
+        this.name = name;
+        this.age = age;
+    }
+}
 
 
 
 
+a.ts
+
+let a:number = 10;
 
 
+b.ts
+
+let a:string = "A";
 
 
+bundle.js ==> IIFE and module system
 
+let a = (function() {
+	var a = 10;
+})(); // JS module system
+
+
+let b = (function() {
+	var a = "A" ;
+})(); // JS module system
 
 
