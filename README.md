@@ -435,14 +435,83 @@ npm i -D eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin
 
   npm run lint
 
+  check: https://eslint.org/docs/rules/
 
   Rules eslint
     .eslintrc
-    
+
     "rules": { 
         "no-case-declarations": 0,
         "no-console": 1 // 0 is no validation; 1 warning ; 2  means error!
       }
 ============================
+Mocha, Jest, Jasmine [ JS Unit Testing framework]
 
-15 min Tea Break
+jasmine-ts [ unit testing Typescript]
+
+npm i -D jasmine jasmine-ts @types/jasmine ts-node
+
+
+npm test
+
+Write Unit testing for filter and map HOF
+
+
+RTL ==> built on top JEST [ added more custom assertions ]
+
+AngularTestBed ==> built on top of Jasmine [ added more custom assertions]
+
+
+============================
+ISTANBUL Code Coverage
+https://github.com/istanbuljs/nyc
+
+npm i -D nyc
+
+================================================
+
+.d.ts ==> only Declarations no implementation
+
+1) seperate development and production code
+
+2) if JS libraries needs to be used in typescript we need "its associated .d.ts"
+
+Example: npm i -D @types/node ===> fs.js http.js, url.js ==> can be used in TS files
+
+ESLint, Jasmine-ts
+
+==================================
+
+MySQL 
+
+Docker Desktop
+
+docker pull mysql
+
+
+docker run --name local-mysql –p 3306:3306 -e MYSQL_ROOT_PASSWORD=Welcome123 -d mysql
+
+
+CONNECT TO A MYSQL RUNNIN CONTAINER
+
+
+Bash into the running container and run MySQL client.
+
+
+Bash into the running MySQL container:
+
+
+$ docker exec -t -i local-mysql  /bin/bash
+
+Run MySQL client:
+$ mysql -u "root"  -p
+
+
+
+
+
+
+
+ 
+
+
