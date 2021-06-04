@@ -333,4 +333,116 @@ let b = (function() {
 	var a = "A" ;
 })(); // JS module system
 
+==================================================
 
+
+Day 3
+======
+
+TypeScript ==> 
+data types; Functions ; Generics; Class and interface; HOF ==> for functional style of programming
+
+tsc ==> npm i -g typescript [ Typescript compiler]
+
+Webpack ==> Bundler, automate bundle by first "transpiling ts to js" and concat files into "bundle.js"
+
+
+HOF ==> Map implementation
+
+----------------------------------------
+
+Generating tsconfig.json
+
+1) Create a node project
+npm init --y
+
+2) tsc --init
+    this creates tsconfig.json
+    has information to "tsc"
+    helps us passing commandline arguments to "tsc"
+
+=============================
+
+Decleration / Documentation of TS
+
+Similar to "header" files of "C"
+
+.d.ts contains declaration; no defintions
+
+user.ts [implementation ] ==> user.d.ts [ declarations]
+
+
+function add(x, y) {
+    return x + y;
+}
+
+
+
+tsc --allowJs --declaration --outDir types a.js 
+
+a.d.ts
+declare function add(x: any, y: any): any;
+
+==========
+
+TypeScript version of "fs", "http" and also unit testing with "jasmine" / "jasmine-ts"
+
+change to directory nodetsexample
+npm init --y
+npx tsc --init [OR tsc --init because we installed npm i -g typescript]
+==> creates tsconfig.json
+
+npm i typescript @types/node
+This package contains type definitions for Node.js [ modules like fs, crypto, http, url, ...]
+
+
+lib.ts
+
+export default add = function() {..}
+
+export sub = function() {..}
+
+
+other.js
+
+import add, {sub} from './lib';
+
+
+===========
+
+let p = {"id": 1, "name": "A", "price" : 4567};
+
+let {name, price} = p;
+
+===========
+
+Run the server.ts using ts-node:
+
+tsc + node command: ts-node
+
+npx ts-node ./server.ts 
+
+==================
+
+Using Static code analysis using ESLint:
+
+npm i -D eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin
+
+ "scripts": {
+    "lint": "eslint . --ext .ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+
+  npm run lint
+
+
+  Rules eslint
+    .eslintrc
+    
+    "rules": { 
+        "no-case-declarations": 0,
+        "no-console": 1 // 0 is no validation; 1 warning ; 2  means error!
+      }
+============================
+
+15 min Tea Break
