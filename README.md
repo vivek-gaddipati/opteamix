@@ -506,12 +506,151 @@ $ docker exec -t -i local-mysql  /bin/bash
 Run MySQL client:
 $ mysql -u "root"  -p
 
+create database nodews;
+use nodews;
+
+create table products(id int PRIMARY KEY AUTO_INCREMENT, name VARCHAR(100), price double, category VARCHAR(100));
 
 
+============
+tsconfig.json
+  "sourceMap": true,                     
+    // "outFile": "./",                       
+     "outDir": "out" 
 
 
+launch.json
 
-
+{
  
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "type": "node",
+        "request": "launch",
+        "name": "Launch Program",
+        "program": "${workspaceFolder}/src/api/app.ts",
+        "preLaunchTask": "tsc: build - tsconfig.json",
+        "outFiles": ["${workspaceFolder}/out/**/*.js"]
+      }
+    ]
+  }
+
+========
 
 
+Day 4:
+======
+.d.ts files
+
+@types/node ==> for using  Nodejs built-in modules in TypeScript
+
+jasmine-ts for testing TypeScript without transpiling
+
+=========================================================
+ 
+ORM ==> Object Relational Mapping
+Objects of program mapped to relational database 
+Type [ class, function] to rdbms table
+fields mapped to columns of table
+ORM takes care of DDL and DML operations
+
+Why?
+    1) Not tightly coupled to a particular database
+    2) eliminates lots of plumbing code
+    3) concentrate only on business logic
+
+Node.js popular ORM frameworks
+1) sequelize
+2) Prisma
+3) TypeORM [ supports oracle]
+
+============================
+
+Node.js ORM framework ==> sequelize
+has support to mysql, postgres, mariadb, MS-SQLServer
+
+
+http://www.databaseanswers.org/data_models/
+
+create a new folder:
+1) npm i mysql2 sequelize typescript
+
+sequelize has typescript support [ no need for @types/sequelize]
+
+2) write connection config file
+    //Product model
+    class Product extends Model {}
+
+    Product.findAll()
+    Product.create()
+    Product.findByPk(1);
+
+    sequelize will generate SQL? ==> uses  dialect: "mysql"
+
+    
+    ========
+
+    Promise API ==> Async operation which can be resolved or rejected
+
+    Without promise method calls will be like:
+
+    let data = doTask();
+
+    console.log("blocked!!!");
+
+    // if function was promise based:
+    doTask()
+        .then(
+            (data) => console.log(data),
+            (rej) => console.log(rej))
+        .catch(err => console.log(err));
+
+
+     console.log("not blocked!!!");
+============
+
+function doTask() {
+  return new Promise( (resolve,reject) => {
+    setTimeout( () => {
+        reject("Happy I returned!!!");
+    }, 1000);
+
+ });
+}
+
+ doTask()
+        .then(
+            (data) => console.log(data),
+            (rej) => console.log("Boom: " + rej))
+        .catch(err => console.log(err));
+
+
+================
+
+fetch("http://jsonplaceholder.typicode.com/users/1")
+    .then(response => response.json())
+    .then(data => console.log(data));
+
+using await:
+
+let response = await fetch("http://jsonplaceholder.typicode.com/users/1");
+let data = await response.json();
+console.log(data);
+
+=================
+let a = 10;
+
+let p = {
+    a: a
+}
+========
+    //import { Op } from 'sequelize/types';
+   Product.findAll({where: { [Op.and] :[{category: 'mobile'}, {price: 12345}]}}).then( products => {
+    // Product.findAll({where: { category: 'mobile'}}).then( products => {
+    // Product.findAll().then( products => {
+=================
+
+15 min Tea Break
+
+===========
