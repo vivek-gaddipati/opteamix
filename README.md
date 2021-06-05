@@ -513,28 +513,7 @@ create table products(id int PRIMARY KEY AUTO_INCREMENT, name VARCHAR(100), pric
 
 
 ============
-tsconfig.json
-  "sourceMap": true,                     
-    // "outFile": "./",                       
-     "outDir": "out" 
 
-
-launch.json
-
-{
- 
-    "version": "0.2.0",
-    "configurations": [
-      {
-        "type": "node",
-        "request": "launch",
-        "name": "Launch Program",
-        "program": "${workspaceFolder}/src/api/app.ts",
-        "preLaunchTask": "tsc: build - tsconfig.json",
-        "outFiles": ["${workspaceFolder}/out/**/*.js"]
-      }
-    ]
-  }
 
 ========
 
@@ -651,6 +630,72 @@ let p = {
     // Product.findAll().then( products => {
 =================
 
+
+sequelize.sync(); // if table exists ==> map to it ; else create table with all constraints
+
+  CREATE TABLE IF NOT EXISTS `items` (`itemid` INTEGER UNSIGNED auto_increment , `amount` DOUBLE PRECISION, `qty` INTEGER, `order_fk` INTEGER UNSIGNED, `product_fk` INTEGER UNSIGNED, PRIMARY KEY (`itemid`), FOREIGN KEY (`order_fk`) REFERENCES `orders` (`oid`) ON DELETE CASCADE ON UPDATE CASCADE, FOREIGN KEY (`product_fk`) REFERENCES `products` (`id`) ON DELETE SET NULL ON UPDATE CASCADE) ENGINE=InnoDB;
+
+===============================
+
+ tsconfig.json
+  "sourceMap": true,                     
+    // "outFile": "./",                       
+     "outDir": "out" 
+
+
+launch.json
+
+{
+ 
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "type": "node",
+        "request": "launch",
+        "name": "Launch Program",
+        "program": "${workspaceFolder}/src/api/app.ts",
+        "preLaunchTask": "tsc: build - tsconfig.json",
+        "outFiles": ["${workspaceFolder}/out/**/*.js"]
+      }
+    ]
+  }
+==========================
+
+ORM -- sequelize
+=================
+
+HasMany
+HasOne
+belongsTo
+belongsToMany
+
+Model ==> CRUD Operations 
+
+===================================================
+
+Building RESTful Web services
+
+http module == request:IncommingMessage
+using this we can identify request.url and perfome tasks
+
+switch(request.url) {
+    case '/': ..
+    case '/products': ...
+    case '/customers': ..
+}
+
+Prefer Restful webservices frameworks for Node.js [ Middleware framework ]
+Express, KOA, Restful, HAPI
+
+npm i express cors 
+
+npm i -D @types/express @types/cors
+
+
+POSTMAN
+
+============================
+
 15 min Tea Break
 
-===========
+=

@@ -18,6 +18,7 @@ async function addOrder() {
         (await tx).commit();
         connection.close();
     } catch(err) {
+        console.log(err);
         (await tx).rollback();
     }
 }
