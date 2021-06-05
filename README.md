@@ -696,6 +696,37 @@ POSTMAN
 
 ============================
 
-15 min Tea Break
+Debug Express Sequeilize application:
+create tsconfig.json
+npx tsc --init 
+    tsconfig.json
+        "target": "es6", 
+         "outDir": "out",
+          "sourceMap": true,
 
-=
+          a.ts => a.map.js =>  a.js
+
+===
+
+launch.json
+
+{
+ 
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "type": "node",
+        "request": "launch",
+        "name": "Launch Program",
+        "program": "${workspaceFolder}/src/api/app.ts",
+        "preLaunchTask": "tsc: build - tsconfig.json",
+        "outFiles": ["${workspaceFolder}/out/**/*.js"]
+      }
+    ]
+  }
+===================================
+
+Complete this app ==> customer and order ==> routes and controller and service
+
+===============================================================================
+

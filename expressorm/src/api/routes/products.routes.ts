@@ -1,5 +1,7 @@
 import express from 'express';
 import {CommonRoutes} from './common.routes';
+import productController from '../controllers/product.controller';
+import productsMiddleware from '../controllers/products.middleware';
 
 export class ProductRoutes extends CommonRoutes {
     constructor(app:express.Application) {
@@ -10,21 +12,16 @@ export class ProductRoutes extends CommonRoutes {
         // http://localhost:3000/products 
 
         this.app.route('/products')
-            .get((req:express.Request, res: express.Response) => {
-                res.status(200).send("List of products");
-            })
-            .post((req:express.Request, res: express.Response) => {
-                res.status(200).send("Post a product");
-            });
+            .get(productController.listProducts)
+            .post(productsMiddleware.validateRequestProductBodyFields,
+                productController.createProduct);
         
         // http://localhost:3000/products/2
         this.app.route('/products/:id')
             .all((req:express.Request, res: express.Response, next: express.NextFunction) => {
                next();
             })
-            .get((req:express.Request, res: express.Response) => {
-                res.status(200).send(`Get requested for id ${req.params.id}`);
-            })
+            .get(productController.getProductById)
             .put((req:express.Request, res: express.Response) => {
                 res.status(200).send(`PUT requested for id ${req.params.id}`);
             })

@@ -5,6 +5,10 @@ import cors from 'cors';
 import { CommonRoutes } from './routes/common.routes';
 import { ProductRoutes } from './routes/products.routes';
 
+import * as winston from 'winston';
+import * as expressWinston from 'express-winston';
+
+
 const app: express.Application = express(); // Middleware Framework for RESTful web services
 
 const server:Server = createServer(app);
@@ -16,6 +20,20 @@ const routes:Array<CommonRoutes> = [];
 // configure middleware
 app.use(express.json());
 app.use(cors());
+
+// Logger configuration
+const loggerOptions: expressWinston.LoggerOptions = {
+    transports: [new winston.transports.Console()],
+    format: winston.format.combine(
+        winston.format.json(),
+        winston.format.prettyPrint(),
+        winston.format.colorize({all:true})
+    )
+};
+app.use(expressWinston.logger(loggerOptions));
+
+// end logger configuration
+
 
 routes.push(new ProductRoutes(app));
 
