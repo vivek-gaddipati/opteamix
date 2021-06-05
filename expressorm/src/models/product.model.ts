@@ -1,5 +1,5 @@
 import {Model, DataTypes} from 'sequelize';
-import {sequelize} from '../config/connection';
+import {connection} from '../config/connection';
 
 export class Product extends Model {
     public id!:number;
@@ -10,7 +10,7 @@ export class Product extends Model {
 
 Product.init({
     id: {
-        type: DataTypes.INTEGER.UNSIGNED,
+        type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },
@@ -28,5 +28,5 @@ Product.init({
 }, {
     tableName: "products",
     timestamps: false,
-    sequelize
+    sequelize:connection
 });

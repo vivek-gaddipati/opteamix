@@ -1,6 +1,6 @@
 import {Product} from '../models/product.model';
 import { Op } from 'sequelize/types';
-import { sequelize } from '../config/connection';
+import { connection } from '../config/connection';
 
 import {Sequelize} from 'sequelize';
 function printAll() {
@@ -20,7 +20,7 @@ function printNameAndPrice() {
     Product.findAll({attributes: ['name', 'price']}).then( elems => {
          elems.forEach(p => console.log(p.getDataValue("name"), p.getDataValue("price")));
         // console.log(elems);
-        sequelize.close();
+        connection.close();
     })
 }
 
@@ -52,7 +52,7 @@ async function print() {
 
 
 
-    sequelize.close();
+    connection.close();
 }
 print();
 

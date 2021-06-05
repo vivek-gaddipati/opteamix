@@ -4,7 +4,7 @@ const db = "nodews";
 const username="root";
 const password="Welcome123";
 
-export const sequelize = new Sequelize(db, username, password, {
+export const connection = new Sequelize(db, username, password, {
     dialect: "mysql",
     port:3306,
     pool: {
@@ -16,6 +16,6 @@ export const sequelize = new Sequelize(db, username, password, {
 });
 
 // Promise
-sequelize.authenticate()
+connection.authenticate()
     .then(() => console.log("mysql connected!!!"))
     .catch(err => console.log(err));
