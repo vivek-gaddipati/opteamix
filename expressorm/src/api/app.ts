@@ -1,6 +1,5 @@
 import express from 'express';
 import {Server, createServer} from 'http';
-
 import cors from 'cors';
 import { CommonRoutes } from './routes/common.routes';
 import { ProductRoutes } from './routes/products.routes';
@@ -8,16 +7,18 @@ import { ProductRoutes } from './routes/products.routes';
 import * as winston from 'winston';
 import * as expressWinston from 'express-winston';
 
+ 
 
 const app: express.Application = express(); // Middleware Framework for RESTful web services
 
 const server:Server = createServer(app);
 
-const port:number = 3000; 
+ 
 
 const routes:Array<CommonRoutes> = [];
 
 // configure middleware
+ 
 app.use(express.json());
 app.use(cors());
 
@@ -30,28 +31,21 @@ const loggerOptions: expressWinston.LoggerOptions = {
         winston.format.colorize({all:true})
     )
 };
-app.use(expressWinston.logger(loggerOptions));
+// app.use(expressWinston.logger(loggerOptions));
 
 // end logger configuration
-
-
-routes.push(new ProductRoutes(app));
-
-const msg = `Server running at http://localhost:${port}`; 
-
+ 
+const msg = `Server running at http://localhost:${process.env.PORT}`; 
 app.get("/", (req:express.Request, res: express.Response) => {
     res.status(200).send(msg);
 });
+ 
 
-server.listen(port, () => console.log(msg));
+routes.push(new ProductRoutes(app));
 
+server.listen(process.env.PORT || 3000, () => console.log(msg));
 
-
-// process.on('SIGINT', () => {
-//     console.log("Die.............");
-//     process.abort();
-// });
-
+export default app;
 
 
 

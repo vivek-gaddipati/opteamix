@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import ProductService from '../../service/product.service';
 
-class ProductController {
+export class ProductController {
     async listProducts(req: Request, res: Response) {
         const products = await ProductService.getProducts();
         res.status(200).send(products);

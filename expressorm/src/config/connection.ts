@@ -12,7 +12,7 @@ export const connection = new Sequelize(db, username, password, {
         max: 5,
         idle: 1000
     },
-    logging:true
+    logging:false
 });
 
 // Promise
